@@ -15,24 +15,25 @@ class Joueur:
 
     def choisir_pokemon(self):
         
-        pokemons = ["Brindibou", "Efflèche", "Archéduc", "Flamiaou", "Matoufeu", "Félinferno", "Otaquin", "Oterlette", "Oratoria", "Picassaut", "Piclairon", "Bazoucan", "Manglouton", "Argouste", "Larvibule", "Chrysapile", "Lucanon", "Crabagarre", "Crabominable", "Plumeline", "Bombydou", "Rubombelle", "Rocabot", "Lougaroc", "Froussardine", "Vorastérie", "Prédastérie", "Tiboudet", "Bourrinos", "Araqua", "Tarenbulle", "Mimantis", "Floramantis", "Spododo", "Lampignon", "Tritox", "Malamandre", "Nounourson", "Chelours", "Croquine", "Candine", "Sucreine", "Guérilande", "Gouroutan", "Quartermac", "Sovkipou", "Sarmuraï", "Bacabouh", "Trépassable", "Concombaffe", "Silvallié", "Météno", "Dodoala", "Boumata", "Togedemaru", "Mimiqui", "Denticrisse", "Draïeul"]
+        pokemons = []
         print(pokemons)
     
     def ajouter_pokemon(self, pokemon):
         self.pokemons.append(pokemon)
 
     def choisir_attaque(self, pokemon_adverse):
-        print(Pokemon.pokemon_combat)
+        ##attaque_pokemon_engagé = 
         i = int(input("Quelle attaque voulez-vous utiliser ?"))
-        return Pokemon.pokemon_combat.attaques[i]
+        return self.pokemons[1].Pokemon.attaques[i]
         
-    ##def recuperer_pokemon(self, premier, deuxieme, troisieme):
+    def recuperer_pokemon(self, pokemon):
+        return self.ajouter_pokemon()
 
     def afficher_pokemon(self):
-        print(self.pokemons)
+        print(f"Nom: {self.pokemons.nom}, Prix: {self.pokemons.prix}, Type: {self.pokemons.type}, PV: {self.pokemons.point_de_vie}, Niveau: {self.pokemons.niveau}, Attaque: {self.pokemons.attaque}, Attaque spéciale: {self.pokemons.Pokemon.attaque_speciale}, Défense: {self.pokemons.defense}, Défense spéciale: {self.pokemons.defense_speciale}, Vitesse: {self.pokemons.vitesse}")
 
-    def afficher():
-        print(Joueur)
+    def afficher(self):
+        print(f"Nom: {self.nom}, Manche gagnée: {self.manche_gagnee}, Argent: {self.argent}")
 
 
 class Pokemon:
@@ -61,22 +62,21 @@ class Pokemon:
         self.defense_speciale = defense_speciale
         self.vitesse = vitesse
         self.attaques = attaques
-        self.pokemon_combat = Jeu.joueur1[1]
 
-    def ajouter_attaque(self, attaquee):
-        self.attaques.append(attaquee)
+    def ajouter_attaque(self, Attaque):
+        self.attaques.append(Attaque)
 
     def attaquer(self, pokemon_adverse, attaque_utilisee):
         return pokemon_adverse, attaque_utilisee
 
     def est_ko(self):
-        if self.pokemon_combat < 0:
+        if self.pokemons[1] < 0:
             return True
         else:
             return False
         
     def afficher_attaques(self):
-        print(f"Nom: {self.pokemon_combat.Attaque.nom}, Type: {self.pokemon_combat.Attaque.type},  Catégorie: {self.pokemon_combat.Attaque.categorie_attaque}, Précision: {self.pokemon_combat.Attaque.precision}, Puissance: {self.pokemon_combat.Attaque.puissance}, PP: {self.pokemon_combat.Attaque.pp}")
+        print(f"Nom: {self.pokemons[1].Attaque.nom}, Type: {self.pokemons[1].Attaque.type},  Catégorie: {self.pokemons[1].Attaque.categorie_attaque}, Précision: {self.pokemons[1].Attaque.precision}, Puissance: {self.pokemons[1].Attaque.puissance}, PP: {self.pokemons[1].Attaque.pp}")
 
     def afficher(self):
          print(f"Nom: {self.nom}, Prix: {self.prix}, Type: {self.type}, PV: {self.point_de_vie}, Niveau: {self.niveau}, Attaque: {self.attaque}, Attaque spéciale: {self.attaque_speciale}, Défense: {self.defense}, Défense spéciale: {self.defense_speciale}, Vitesse: {self.vitesse}")
