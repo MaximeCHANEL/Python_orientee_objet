@@ -131,3 +131,38 @@ class Jeu:
             elif i == 2:
                 self.joueurs[i] = input("Quel est votre nom (joueur 2) ?")
                 self.joueurs[i] = input("Pouvez-vous acheter vos pokémons ?")
+
+#Tout les Pokemeon
+Type_feu = Type("feu")
+Type_eau = Type("Eau")
+Type_fée = Type("Fée")
+Type_ténèbres = Type("ténèbres")
+Type_Dragon = Type("dragon")
+Type_Psy = Type("Psy")
+Type_inconnu = Type("Inconnu")
+
+Attaque_feu = Attaque("Nitrocharge", Type_feu, "Physique", 50, 100, 20)
+Attaque_eau =Attaque("Sheauriken", Type_eau, "Physique", 100, 15, 20)
+Attaque_fée = Attaque("Eclair magique", Type_fée, "Spécial", 80, 100, 10)
+Attaque_Ténèbres = Attaque("Bombe puante", Type_ténèbres, "Spécial", 100, 70, 8)
+Attaque_Dragon = Attaque("Dragon céleste", Type_Dragon, "Spécial", 100, 228422, 22842 )
+Attaque_Psy = Attaque("Boutefeu", Type_fée, "Spécial", 100, 120, 15)
+Attaque_Inconnu = Attaque("Enfantin", Type_inconnu, "Physique", 50, 6000, 2)
+
+Pokemon_Goupelin = Pokemon("Goupelin", 75, [Type_feu], 354, 46, 69, 72, 74, 100 , 104)
+Pokemon_Amphinobi = Pokemon("Amphinobi", 80, [Type_eau], 348, 50, 95, 67, 103, 71, 122)
+Pokemon_Xernéas = Pokemon("Xernéas", 100, [Type_fée], 456, 20, 131, 95, 131, 98, 99)
+Pokemon_Tokodombi = Pokemon("Toko dombi", 10, [Type_ténèbres], 1492, 105, 60, 60, 70, 95)
+Pokemon_neduj = Pokemon("neduj", 1000, [Type_Dragon], 374, 1, 73, 70, 73, 115 , 67)
+Pokemon_Solgaléo = Pokemon("Solgaléo", 120, [Type_Psy], 478, 15, 137, 107, 113, 89, 97)
+Pokemon_Norman = Pokemon("Norman", 16, {Type_inconnu}, 470, 36, 73, 115, 100, 144, 20)
+
+Pokemon_Goupelin.ajouter_attaque(Attaque_feu)
+Pokemon_Amphinobi.ajouter_attaque(Attaque_eau)
+Pokemon_Xernéas.ajouter_attaque(Attaque_fée)
+Pokemon_Tokodombi.ajouter_attaque(Attaque_Ténèbres)
+Pokemon_neduj.ajouter_attaque(Attaque_Dragon)
+Pokemon_Solgaléo.ajouter_attaque(Attaque_Psy)
+Pokemon_Norman.ajouter_attaque(Attaque_Inconnu)
+
+Pokemon_disponible = [Pokemon_Goupelin, Pokemon_Amphinobi, Pokemon_Xernéas, Pokemon_Tokodombi, Pokemon_neduj, Pokemon_Solgaléo, Pokemon_Norman]
