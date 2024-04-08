@@ -3,7 +3,7 @@ from random import *
 class Joueur:
     nom = ' '
     manche_gagnee = ' '
-    argent = 10000
+    argent = 1220
     pokemons = ' '
 
 
