@@ -15,11 +15,18 @@ class Joueur:
 
     def choisir_pokemon(self):
         
-        pokemons = []
+        pokemons = ["Goupelin", "Amphinobi", "Xernéas", "Escroco", "Bruyverne", "Solgaléo", "Piafabec"]
         print(pokemons)
     
-    def ajouter_pokemon(self, pokemon):
-        self.pokemons.append(pokemon)
+    def ajouter_pokemon(self):
+        liste_joueur = []
+
+        pokemon1 = int(input("Choisi le premier pokémon"))
+        liste_joueur.append(self.pokemons[pokemon1])
+        pokemon2 = int(input("Choisi le deuxième pokémon"))
+        liste_joueur.append(self.pokemons[pokemon2])
+        pokemon3 = int(input("Choisi le troisième pokémon"))
+        liste_joueur.append(self.pokemons[pokemon3])
 
     def choisir_attaque(self, pokemon_adverse):
         ##attaque_pokemon_engagé = 
