@@ -3,9 +3,8 @@ from random import *
 class Joueur:
     nom = ' '
     manche_gagnee = ' '
-    argent = ' '
-    pokemons = []
-    i = 0
+    argent = 10000
+    pokemons = ' '
 
     pokemon_attaquant = random.randint(0, len(pokemons)-1)
     pokemon_attaquer = random.randint(0, len(pokemons)-1)
@@ -18,20 +17,8 @@ class Joueur:
 
     def choisir_pokemon(self):
         
-        for i in range(3):
-            dresseur = int(input("Choisi 1 pokémon parmi la liste"))
-            if dresseur == self.pokemons:
-                i = i + 1
-                print(dresseur)
-                if i == 1:
-                    premier = 1
-                    return premier
-                elif i == 2:
-                    deuxieme = 2
-                    return deuxieme
-                elif i == 3:
-                    troisieme = 3
-                    return troisieme
+        pokemons = ["Brindibou", "Efflèche", "Archéduc", "Flamiaou", "Matoufeu", "Félinferno", "Otaquin", "Oterlette", "Oratoria", "Picassaut", "Piclairon", "Bazoucan", "Manglouton", "Argouste", "Larvibule", "Chrysapile", "Lucanon", "Crabagarre", "Crabominable", "Plumeline", "Bombydou", "Rubombelle", "Rocabot", "Lougaroc", "Froussardine", "Vorastérie", "Prédastérie", "Tiboudet", "Bourrinos", "Araqua", "Tarenbulle", "Mimantis", "Floramantis", "Spododo", "Lampignon", "Tritox", "Malamandre", "Nounourson", "Chelours", "Croquine", "Candine", "Sucreine", "Guérilande", "Gouroutan", "Quartermac", "Sovkipou", "Sarmuraï", "Bacabouh", "Trépassable", "Concombaffe", "Silvallié", "Météno", "Dodoala", "Boumata", "Togedemaru", "Mimiqui", "Denticrisse", "Draïeul"]
+        print(pokemons)
     
     def ajouter_pokemon(self, pokemon):
         self.pokemons.append(pokemon)
@@ -55,7 +42,7 @@ class Pokemon:
     nom = ' '
     prix = ' '
     type = ' '
-    point_de_vie = ' '
+    point_de_vie = 5000
     niveau = ' '
     attaque = ' '
     attaque_speciale = ' '
@@ -63,6 +50,7 @@ class Pokemon:
     defense_speciale = ' '
     vitesse = ' '
     attaques = []
+    pokemon_combat = ' '
 
     def __init__(self, nom, prix, type, point_de_vie, niveau, attaque, attaque_speciale, defense, defense_speciale, vitesse, attaques):
         self.nom = nom
@@ -76,23 +64,25 @@ class Pokemon:
         self.defense_speciale = defense_speciale
         self.vitesse = vitesse
         self.attaques = attaques
+        self.pokemon_combat = Jeu.joueur1[1]
 
     def ajouter_attaque(self, attaquee):
         self.attaques.append(attaquee)
 
-    ##def attaquer(self, feuricendre, boule_eleck):
+    def attaquer(self, pokemon_adverse, attaque_utilisee):
+        return pokemon_adverse, attaque_utilisee
 
     def est_ko(self):
-        if Joueur.pokemons < self.point_de_vie:
+        if self.pokemon_combat < 0:
             return True
         else:
             return False
         
     def afficher_attaques(self):
-        print(Attaque)
+        print(f"Nom: {self.pokemon_combat.Attaque.nom}, Type: {self.pokemon_combat.Attaque.type},  Catégorie: {self.pokemon_combat.Attaque.categorie_attaque}, Précision: {self.pokemon_combat.Attaque.precision}, Puissance: {self.pokemon_combat.Attaque.puissance}, PP: {self.pokemon_combat.Attaque.pp}")
 
     def afficher(self):
-        print(Pokemon)
+         print(f"Nom: {self.nom}, Prix: {self.prix}, Type: {self.type}, PV: {self.point_de_vie}, Niveau: {self.niveau}, Attaque: {self.attaque}, Attaque spéciale: {self.attaque_speciale}, Défense: {self.defense}, Défense spéciale: {self.defense_speciale}, Vitesse: {self.vitesse}")
 
 
 class Attaque:
@@ -115,3 +105,28 @@ class Attaque:
         pv_perdus = (((Pokemon.niveau*0.4 + 2)*Pokemon.attaque*self.puissance)/(Pokemon.defense*50)+2)
         resultat = Pokemon.point_de_vie - pv_perdus
         print(resultat)
+
+
+class Jeu:
+    joueurs = []
+
+
+    def jouer(self):
+        joueur1 = 1
+        joueur2 = 2
+        joueur1 = []
+        joueur2 = []
+        self.joueurs.append(joueur1)
+        self.joueurs.append(joueur2)
+        i = 1
+
+        for i in range (2):
+            if i == 1:
+                self.joueurs[i] = input("Quel est votre nom (joueur 1) ?")
+                for i in range(3):
+                    self.joueurs[i] = int(input("Choisissez un nombre pour choisir votre pokémon"))
+                    ##self.joueurs[i] = 
+                i = i + 1
+            elif i == 2:
+                self.joueurs[i] = input("Quel est votre nom (joueur 2) ?")
+                self.joueurs[i] = input("Pouvez-vous acheter vos pokémons ?")
