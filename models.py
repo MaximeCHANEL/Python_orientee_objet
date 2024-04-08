@@ -30,7 +30,7 @@ class Joueur:
         return self.ajouter_pokemon()
 
     def afficher_pokemon(self):
-        print(f"Nom: {self.pokemons.nom}, Prix: {self.pokemons.prix}, Type: {self.pokemons.type}, PV: {self.pokemons.point_de_vie}, Niveau: {self.pokemons.niveau}, Attaque: {self.pokemons.attaque}, Attaque spéciale: {self.pokemons.Pokemon.attaque_speciale}, Défense: {self.pokemons.defense}, Défense spéciale: {self.pokemons.defense_speciale}, Vitesse: {self.pokemons.vitesse}")
+        print(f"Nom: {self.pokemons.nom}, Prix: {self.pokemons.prix}, type: {self.pokemons.type}, PV: {self.pokemons.point_de_vie}, Niveau: {self.pokemons.niveau}, Attaque: {self.pokemons.attaque}, Attaque spéciale: {self.pokemons.Pokemon.attaque_speciale}, Défense: {self.pokemons.defense}, Défense spéciale: {self.pokemons.defense_speciale}, Vitesse: {self.pokemons.vitesse}")
 
     def afficher(self):
         print(f"Nom: {self.nom}, Manche gagnée: {self.manche_gagnee}, Argent: {self.argent}")
@@ -76,10 +76,10 @@ class Pokemon:
             return False
         
     def afficher_attaques(self):
-        print(f"Nom: {self.pokemons[1].Attaque.nom}, Type: {self.pokemons[1].Attaque.type},  Catégorie: {self.pokemons[1].Attaque.categorie_attaque}, Précision: {self.pokemons[1].Attaque.precision}, Puissance: {self.pokemons[1].Attaque.puissance}, PP: {self.pokemons[1].Attaque.pp}")
+        print(f"Nom: {self.pokemons[1].Attaque.nom}, type: {self.pokemons[1].Attaque.type},  Catégorie: {self.pokemons[1].Attaque.categorie_attaque}, Précision: {self.pokemons[1].Attaque.precision}, Puissance: {self.pokemons[1].Attaque.puissance}, PP: {self.pokemons[1].Attaque.pp}")
 
     def afficher(self):
-         print(f"Nom: {self.nom}, Prix: {self.prix}, Type: {self.type}, PV: {self.point_de_vie}, Niveau: {self.niveau}, Attaque: {self.attaque}, Attaque spéciale: {self.attaque_speciale}, Défense: {self.defense}, Défense spéciale: {self.defense_speciale}, Vitesse: {self.vitesse}")
+         print(f"Nom: {self.nom}, Prix: {self.prix}, type: {self.type}, PV: {self.point_de_vie}, Niveau: {self.niveau}, Attaque: {self.attaque}, Attaque spéciale: {self.attaque_speciale}, Défense: {self.defense}, Défense spéciale: {self.defense_speciale}, Vitesse: {self.vitesse}")
 
 
 class Attaque:
@@ -133,29 +133,29 @@ class Jeu:
                 self.joueurs[i] = input("Pouvez-vous acheter vos pokémons ?")
 
 #Tout les Pokemeon
-Type_feu = Type("feu")
-Type_eau = Type("Eau")
-Type_fée = Type("Fée")
-Type_ténèbres = Type("ténèbres")
-Type_Dragon = Type("dragon")
-Type_Psy = Type("Psy")
-Type_inconnu = Type("Inconnu")
+type_feu = type("feu")
+type_eau = type("Eau")
+type_fée = type("Fée")
+type_ténèbres = type("ténèbres")
+type_Dragon = type("dragon")
+type_Psy = type("Psy")
+type_inconnu = type("Inconnu")
 
-Attaque_feu = Attaque("Nitrocharge", Type_feu, "Physique", 50, 100, 20)
-Attaque_eau =Attaque("Sheauriken", Type_eau, "Physique", 100, 15, 20)
-Attaque_fée = Attaque("Eclair magique", Type_fée, "Spécial", 80, 100, 10)
-Attaque_Ténèbres = Attaque("Bombe puante", Type_ténèbres, "Spécial", 100, 70, 8)
-Attaque_Dragon = Attaque("Dragon céleste", Type_Dragon, "Spécial", 100, 228422, 22842 )
-Attaque_Psy = Attaque("Boutefeu", Type_fée, "Spécial", 100, 120, 15)
-Attaque_Inconnu = Attaque("Enfantin", Type_inconnu, "Physique", 50, 6000, 2)
+Attaque_feu = Attaque("Nitrocharge", type_feu, "Physique", 50, 100, 20)
+Attaque_eau =Attaque("Sheauriken", type_eau, "Physique", 100, 15, 20)
+Attaque_fée = Attaque("Eclair magique", type_fée, "Spécial", 80, 100, 10)
+Attaque_Ténèbres = Attaque("Bombe puante", type_ténèbres, "Spécial", 100, 70, 8)
+Attaque_Dragon = Attaque("Dragon céleste", type_Dragon, "Spécial", 100, 228422, 22842 )
+Attaque_Psy = Attaque("Boutefeu", type_fée, "Spécial", 100, 120, 15)
+Attaque_Inconnu = Attaque("Enfantin", type_inconnu, "Physique", 50, 6000, 2)
 
-Pokemon_Goupelin = Pokemon("Goupelin", 75, [Type_feu], 354, 46, 69, 72, 74, 100 , 104)
-Pokemon_Amphinobi = Pokemon("Amphinobi", 80, [Type_eau], 348, 50, 95, 67, 103, 71, 122)
-Pokemon_Xernéas = Pokemon("Xernéas", 100, [Type_fée], 456, 20, 131, 95, 131, 98, 99)
-Pokemon_Tokodombi = Pokemon("Toko dombi", 10, [Type_ténèbres], 1492, 105, 60, 60, 70, 95)
-Pokemon_neduj = Pokemon("neduj", 1000, [Type_Dragon], 374, 1, 73, 70, 73, 115 , 67)
-Pokemon_Solgaléo = Pokemon("Solgaléo", 120, [Type_Psy], 478, 15, 137, 107, 113, 89, 97)
-Pokemon_Norman = Pokemon("Norman", 16, {Type_inconnu}, 470, 36, 73, 115, 100, 144, 20)
+Pokemon_Goupelin = Pokemon("Goupelin", 75, [type_feu], 354, 46, 69, 72, 74, 100 , 104)
+Pokemon_Amphinobi = Pokemon("Amphinobi", 80, [type_eau], 348, 50, 95, 67, 103, 71, 122)
+Pokemon_Xernéas = Pokemon("Xernéas", 100, [type_fée], 456, 20, 131, 95, 131, 98, 99)
+Pokemon_Tokodombi = Pokemon("Toko dombi", 10, [type_ténèbres], 1492, 105, 60, 60, 70, 95)
+Pokemon_neduj = Pokemon("neduj", 1000, [type_Dragon], 374, 1, 73, 70, 73, 115 , 67)
+Pokemon_Solgaléo = Pokemon("Solgaléo", 120, [type_Psy], 478, 15, 137, 107, 113, 89, 97)
+Pokemon_Norman = Pokemon("Norman", 16, {type_inconnu}, 470, 36, 73, 115, 100, 144, 20)
 
 Pokemon_Goupelin.ajouter_attaque(Attaque_feu)
 Pokemon_Amphinobi.ajouter_attaque(Attaque_eau)
