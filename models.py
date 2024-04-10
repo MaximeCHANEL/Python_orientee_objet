@@ -109,28 +109,19 @@ class Attaque:
 
 
 class Jeu:
-    joueurs = []
-
+    def __init__(self):
+        self.joueurs = []
 
     def jouer(self):
-        joueur1 = 1
-        joueur2 = 2
-        joueur1 = []
-        joueur2 = []
-        self.joueurs.append(joueur1)
-        self.joueurs.append(joueur2)
-        i = 1
+        for i in range(2):
+            nom = input(f"Nom du joueur {i+1}: ")
+            argent = 1220 
+            joueur = Joueur(nom, argent)
+            joueur.choisir_pokemon(pokemons_disponibles)
+            self.joueurs.append(joueur)
 
-        for i in range (2):
-            if i == 1:
-                self.joueurs[i] = input("Quel est votre nom (joueur 1) ?")
-                for i in range(3):
-                    self.joueurs[i] = int(input("Choisissez un nombre pour choisir votre pokémon"))
-                    ##self.joueurs[i] = 
-                i = i + 1
-            elif i == 2:
-                self.joueurs[i] = input("Quel est votre nom (joueur 2) ?")
-                self.joueurs[i] = input("Pouvez-vous acheter vos pokémons ?")
+            #Boucke des manches
+            for i in range(3):
 
 #Tout les Pokemeon
 type_feu = type("feu")
