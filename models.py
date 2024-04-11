@@ -1,54 +1,58 @@
 from random import *
 
 class Joueur:
-    nom = ' '
-    manche_gagnee = ' '
-    argent = 1220
-    pokemons = ' '
 
-
-    def __init__(self, nom, manche_gagnee, argent, pokemons):
+    def __init__(self, nom, manche_gagnee, argent):
         self.nom = nom
         self.manche_gagnee = manche_gagnee
         self.argent = argent
-        self.pokemons = pokemons
+        self.pokemons = []
 
-    def choisir_pokemon(self):
+    def choisir_pokemon(self, pokemons_disponibles):
         
-        pokemons = []
-        print(pokemons)
+        print("Liste des Pokemons disponibles:")
+        for i, pokemon in enumerate(pokemons_disponibles):
+            print(f"{i + 1}. {pokemon.nom}")
+        choix = int(input("Choisissez un numéro de Pokemon: ")) - 1
+        pokemon_choisi = pokemons_disponibles[choix]
+        self.pokemons.append(pokemon_choisi)
+        pokemons_disponibles.remove(pokemon_choisi)
     
     def ajouter_pokemon(self, pokemon):
-        self.pokemons.append(pokemon)
 
-    def choisir_attaque(self, pokemon_adverse):
-        ##attaque_pokemon_engagé = 
-        i = int(input("Quelle attaque voulez-vous utiliser ?"))
-        return self.pokemons[1].Pokemon.attaques[i]
+        if len(self.pokemons) < 3:
+            self.pokemons.append(pokemon)
+            print(f"{pokemon.nom} a été ajouté à votre équipe !")
+        else:
+            print("Vous avez déjà 3 Pokémon dans votre équipe.")
+
+    def choisir_attaque(self, pokemon):
+
+        print(f"Liste des attaques de {pokemon.nom}:")
+        for i, attaque in enumerate(pokemon.attaques):
+            print(f"{i + 1}. {attaque.nom}")
+
+        choix = int(input("Choisissez un numéro d'attaque: ")) - 1
+        if 0 <= choix < len(pokemon.attaques):
+            return pokemon.attaques[choix]
+        else:
+            print("Numéro d'attaque invalide. Veuillez choisir à nouveau.")
+            return self.choisir_attaque(pokemon)
         
-    def recuperer_pokemon(self, pokemon):
-        return self.ajouter_pokemon()
+    """def recuperer_pokemon(self, pokemon):
+        return self.pokemon()"""
 
-    def afficher_pokemon(self):
-        print(f"Nom: {self.pokemons.nom}, Prix: {self.pokemons.prix}, type: {self.pokemons.type}, PV: {self.pokemons.point_de_vie}, Niveau: {self.pokemons.niveau}, Attaque: {self.pokemons.attaque}, Attaque spéciale: {self.pokemons.Pokemon.attaque_speciale}, Défense: {self.pokemons.defense}, Défense spéciale: {self.pokemons.defense_speciale}, Vitesse: {self.pokemons.vitesse}")
+    def afficher_pokemon(self, pokemon):
+
+        print("Pokémons dans l'équipe de", self.nom + ":")
+        for i in range(1, len(self.pokemons)- 1):
+            print(f"Nom: {pokemon.nom}, Prix: {pokemon.prix}, type: {pokemon.type}, PV: {pokemon.point_de_vie}, Niveau: {pokemon.niveau}, Attaque: {pokemon.attaque}, Attaque spéciale: {pokemon.attaque_speciale}, Défense: {pokemon.defense}, Défense spéciale: {pokemon.defense_speciale}, Vitesse: {pokemon.vitesse}")
 
     def afficher(self):
         print(f"Nom: {self.nom}, Manche gagnée: {self.manche_gagnee}, Argent: {self.argent}")
 
 
 class Pokemon:
-    nom = ' '
-    prix = ' '
-    type = ' '
-    point_de_vie = 5000
-    niveau = ' '
-    attaque = ' '
-    attaque_speciale = ' '
-    defense = ' '
-    defense_speciale = ' '
-    vitesse = ' '
-    attaques = []
-    pokemon_combat = ' '
 
     def __init__(self, nom, prix, type, point_de_vie, niveau, attaque, attaque_speciale, defense, defense_speciale, vitesse, attaques):
         self.nom = nom
@@ -61,25 +65,32 @@ class Pokemon:
         self.defense = defense
         self.defense_speciale = defense_speciale
         self.vitesse = vitesse
-        self.attaques = attaques
+        self.attaques = []
 
-    def ajouter_attaque(self, Attaque):
-        self.attaques.append(Attaque)
+    def ajouter_attaque(self, attaque):
+        if len(self.attaques) < 3:
+            self.attaques.append(attaque)
+            print(f"{attaque.nom} a été ajouté à pokémon !")
+        else:
+            print("Vous avez déjà 3 attaques pour ce pokémon.")
 
-    def attaquer(self, pokemon_adverse, attaque_utilisee):
-        return pokemon_adverse, attaque_utilisee
-
-    def est_ko(self):
-        if self.pokemons[1] < 0:
+    def attaquer(self, pokemon, attaque):
+        return pokemon, attaque
+    
+    def est_ko(self, pokemon):
+        if pokemon.point_de_vie < 0:
             return True
         else:
             return False
         
-    def afficher_attaques(self):
-        print(f"Nom: {self.pokemons[1].Attaque.nom}, type: {self.pokemons[1].Attaque.type},  Catégorie: {self.pokemons[1].Attaque.categorie_attaque}, Précision: {self.pokemons[1].Attaque.precision}, Puissance: {self.pokemons[1].Attaque.puissance}, PP: {self.pokemons[1].Attaque.pp}")
+    def afficher_attaques(self, attaque):
+        print("Attaques du pokémon", self.nom + ":")
+        for i in range(1, len(self.attaques)- 1):
+            print(f"Nom: {attaque.nom}, type: {attaque.type},  Catégorie: {attaque.categorie_attaque}, Précision: {attaque.precision}, Puissance: {attaque.puissance}, PP: {attaque.pp}")
 
-    def afficher(self):
-         print(f"Nom: {self.nom}, Prix: {self.prix}, type: {self.type}, PV: {self.point_de_vie}, Niveau: {self.niveau}, Attaque: {self.attaque}, Attaque spéciale: {self.attaque_speciale}, Défense: {self.defense}, Défense spéciale: {self.defense_speciale}, Vitesse: {self.vitesse}")
+    def afficher(self, pokemon):
+        for i in range(1, len(self.pokemons)- 1):
+            print(f"Nom: {pokemon.nom}, Prix: {pokemon.prix}, type: {pokemon.type}, PV: {pokemon.point_de_vie}, Niveau: {pokemon.niveau}, Attaque: {pokemon.attaque}, Attaque spéciale: {pokemon.attaque_speciale}, Défense: {pokemon.defense}, Défense spéciale: {pokemon.defense_speciale}, Vitesse: {pokemon.vitesse}")
 
 
 class Attaque:
@@ -182,6 +193,7 @@ class Jeu:
 
 
 #Tout les Pokemeon
+"""
 type_feu = type("feu")
 type_eau = type("Eau")
 type_fée = type("Fée")
@@ -215,3 +227,4 @@ Pokemon_Solgaléo.ajouter_attaque(Attaque_Psy)
 Pokemon_Norman.ajouter_attaque(Attaque_Inconnu)
 
 Pokemon_disponible = [Pokemon_Goupelin, Pokemon_Amphinobi, Pokemon_Xernéas, Pokemon_Tokodombi, Pokemon_neduj, Pokemon_Solgaléo, Pokemon_Norman]
+"""
