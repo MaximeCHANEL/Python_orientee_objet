@@ -122,6 +122,64 @@ class Jeu:
 
             #Boucke des manches
             for i in range(3):
+                for joueur in self.joueurs:
+                adversaire = self.joueurs[1] if joueur == self.joueurs[0] else self.joueurs[0]
+                pokemon_joueur = joueur.recuperer_pokemon(1) # Pour simplifier, on prend toujours le premier pokemon
+                pokemon_adversaire = adversaire.recuperer_pokemon(1)
+
+                attaque_joueur = joueur.choisir_attaque(pokemon_joueur)
+                attaque_adversaire = adversaire.choisir_attaque(pokemon_adversaire)
+
+                if pokemon_joueur.vitesse > pokemon_adversaire.vitesse:
+                    degats = attaque_joueur.calculer_degats(pokemon_joueur, pokemon_adversaire)
+                    pokemon_adversaire.pv -= degats
+                    print(f"{pokemon_joueur.nom} attaque avec {attaque_joueur.nom} et inflige {degats} dégâts à {pokemon_adversaire.nom}")
+
+                    if pokemon_adversaire.est_ko():
+                        print(f"{pokemon_adversaire.nom} est K.O.")
+                        joueur.manche_gagnee += 1
+                        break
+
+                    degats = attaque_adversaire.calculer_degats(pokemon_adversaire, pokemon_joueur)
+                    pokemon_joueur.pv -= degats
+                    print(f"{pokemon_adversaire.nom} attaque avec {attaque_adversaire.nom} et inflige {degats} dégâts à {pokemon_joueur.nom}")
+
+                    if pokemon_joueur.est_ko():
+                        print(f"{pokemon_joueur.nom} est K.O.")
+                        adversaire.manche_gagnee += 1
+                        break
+
+                else:
+                    degats = attaque_adversaire.calculer_degats(pokemon_adversaire, pokemon_joueur)
+                    pokemon_joueur.pv -= degats
+                    print(f"{pokemon_adversaire.nom} attaque avec {attaque_adversaire.nom} et inflige {degats} dégâts à {pokemon_joueur.nom}")
+
+                    if pokemon_joueur.est_ko():
+                        print(f"{pokemon_joueur.nom} est K.O.")
+                        adversaire.manche_gagnee += 1
+                        break
+
+                    degats = attaque_joueur.calculer_degats(pokemon_joueur, pokemon_adversaire)
+                    pokemon_adversaire.pv -= degats
+                    print(f"{pokemon_joueur.nom} attaque avec {attaque_joueur.nom} et inflige {degats} dégâts à {pokemon_adversaire.nom}")
+
+                    if pokemon_adversaire.est_ko():
+                        print(f"{pokemon_adversaire.nom} est K.O.")
+                        joueur.manche_gagnee += 1
+                        break
+
+        # Détermination du vainqueur
+        vainqueur = None
+        for joueur in self.joueurs:
+            if joueur.manche_gagnee >= 2:
+                vainqueur = joueur
+                break
+
+        if vainqueur:
+            print(f"{vainqueur.nom} a gagné la partie!")
+        else:
+            print("Match nul.")
+
 
 #Tout les Pokemeon
 type_feu = type("feu")
